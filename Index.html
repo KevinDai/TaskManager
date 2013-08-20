@@ -6,102 +6,370 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/todc-bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/minimal.css" rel="stylesheet" media="screen">
+    <!-- <link href="css/todc-bootstrap.css" rel="stylesheet" media="screen"> -->
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
     <link href="css/index.css" rel="stylesheet" media="screen">
     <script src="js/jquery-1.7.1.js"></script>
+    <script src="js/jquery.icheck.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <div class="masthead">
-        <ul class="pull-right unstyled inline header-info">
+<div class="masthead">
+    <ul class="pull-right unstyled inline header-info">
+        <li>
+            <a class="text-info" href="#"><i class="icon-user"></i> User</a>
+        </li>
+        <li>
+            <a class="text-info" href="#"><i class="icon-off"></i> 退出</a>
+        </li>
+    </ul>
+    <h3 class="muted">任务清单</h3>
+</div>
+<hr>
+<div class="row">
+<div class="span2">
+    <ul class="nav nav-list">
+        <button class="btn btn-danger btn-new">新 增</button>
+        <li><h5 class="muted">到期时间</h5>
+        </li>
+        <li><a href="javascript:void(0);"><i class="icon-minus"></i><span class="text-success">全部</span></a></li>
+        <li>
+            <ul class="nav nav-list">
+                <li><a href="#">三天内</a></li>
+                <li class="active"><a href="#">一周内</a></li>
+                <li><a href="#">一个月内</a></li>
+                <li><a href="#">一个月以上</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-header"><h5 class="muted">任务类型</h5></li>
+        <li>
+            <ul class="nav nav-list">
+                <li><a href="#">我负责的</a></li>
+                <li><a href="#">我参与的</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="list" class="span10">
+<div class="row">
+    <div class="span6">
+        <ul class="inline">
             <li>
-                <a class="text-info" href="#"><i class="icon-user"></i> User</a>
+                <div style="margin: 0px 30px 0px 2px;">
+                    <input type="checkbox">
+                </div>
             </li>
             <li>
-                <a class="text-info" href="#"><i class="icon-off"></i> 退出</a>
+                <div class="btn-group content-toolbar">
+                    <a class="btn btn-action" title="删除"><i class="icon-trash"></i></a>
+                </div>
+                <div class="btn-group content-toolbar">
+                    <a class="btn dropdown-toggle btn-action" data-toggle="dropdown"  title="标记"><i class="icon-tags"></i> <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-ok"></i> 标记为完成</a></li>
+                        <li><a href="#"><i class="icon-off"></i> 标记为取消</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group content-toolbar">
+                    <a class="btn btn-action" title="下载"><i class="icon-download-alt"></i></a>
+                </div>
+                <!--<div class="btn-group content-toolbar">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        更多操作
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">标记为完成</a></li>
+                    </ul>
+                </div>-->
             </li>
         </ul>
-        <h3 class="muted">Project name</h3>
+        <!--<div class="navbar">
+        </div>-->
     </div>
-    <hr>
-    <div class="row">
-        <div class="span2">
-            <ul class="nav nav-list">
-                <li class="nav-header">到期时间
-                </li>
-                <li>
-                    <ul class="nav nav-list">
-                        <li><a href="#">三天内</a></li>
-                        <li class="active"><a href="#">一周内</a></li>
-                        <li><a href="#">一个月内</a></li>
-                        <li><a href="#">一个月以上</a></li>
-                    </ul>
-                </li>
-                <li class="nav-header">任务类型</li>
-                <li>
-                    <ul class="nav nav-list">
-                        <li class="active"><a href="#">我负责的</a></li>
-                        <li><a href="#">我参与的</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <div class="span10 ">
-            <div class="row">
-                <div class="span4">
-
-                    <button class="btn">
-                        <input type="checkbox" style="margin: 0px 20px 2px 20px;" id="inlineCheckbox1" value="option1">
-                    </button>
-                    <div class="btn-group">
-                        <button class="btn">新 增</button>
-                        <button class="btn">删 除</button>
-                        <button class="btn">排 序</button>
-                    </div>
+    <div class="span4">
+        <ul class="pull-right inline">
+            <li>
+                <span class="content-toolbar">
+                    第
+                    <strong>1-20</strong>
+                    项，共
+                    <strong>55</strong>
+                    项
+                </span>
+            </li>
+            <li>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-chevron-left"></i></a>
+                    <a class="btn"><i class="icon-chevron-right"></i></a>
                 </div>
-            </div>
-
-            <hr>
-            <div class="row">
-                <div class="span9">
-                    <h4>自动部署工具</h4>
-
-                    <p>系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
-                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
-                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了.</p>
-
-                    <h4>Subheading</h4>
-
-                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit
-                        amet
-                        fermentum.</p>
-
-                    <h4>Subheading</h4>
-
-                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-refresh"></i></a>
                 </div>
-
-                <div class="span9">
-                    <h4>Subheading</h4>
-
-                    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                    <h4>Subheading</h4>
-
-                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit
-                        amet
-                        fermentum.</p>
-
-                    <h4>Subheading</h4>
-
-                    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-cog"></i></a>
                 </div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </div>
+<div class="row">
+    <div class="span10">
+        <table class="table table-hover">
+            <colgroup>
+                <col style="width: 40px;">
+                <col style="width: 100px;">
+                <col style="width: 150px;">
+                <col style="width: 80px;">
+                <col style="width: 250px;">
+            </colgroup>
+            <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-day">2
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-day">2
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-day">3
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-week">6
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-week">7
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan-month">30
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan">50
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <p>
+                        <strong class="timespan">80
+                        </strong>
+                        <small>天</small>
+                    </p>
+                    <small class="muted">2013年4月4日</small>
+                </td>
+                <td><h5>自动部署工具</h5></td>
+                <td><h5>负责人</h5></td>
+                <td>
+                    <div style="overflow: hidden;">
+                        系统管理员经常陷入一系列的重复任务中：如升级软件包、管理配置文件、系统服务、cron任务以及添加新的配置、修复错误等。这些任务通常是重复低
+                        效的，解决这类任务的第一反应是让他们自动化，于是出现了定制脚本。由于环境复杂，定制脚本和应用程序一再被重复开发，并且很难适合多种平台，灵活性和功
+                        能也很难保证，于是像Puppet这样的自动化配置管理工具便出现了
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<div id="edit" class="span10" style="display: none">
+    <div class="span6">
+        <ul class="inline">
+            <li>
+                <div style="margin: 0px 30px 0px 2px;">
+                    <input type="checkbox">
+                </div>
+            </li>
+            <li>
+                <div class="btn-group content-toolbar">
+                    <a class="btn btn-action"><i class="icon-trash"></i></a>
+                </div>
+                <div class="btn-group content-toolbar">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        更多操作
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">标记为完成</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!--<div class="navbar">
+        </div>-->
+    </div>
+    <div class="span4">
+        <ul class="pull-right inline">
+            <li>
+                   <span class="content-toolbar">
+                       第
+                       <strong>1-20</strong>
+                       项，共
+                       <strong>55</strong>
+                       项
+                   </span>
+            </li>
+            <li>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-chevron-left"></i></a>
+                    <a class="btn"><i class="icon-chevron-right"></i></a>
+                </div>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-refresh"></i></a>
+                </div>
+                <div class="btn-group content-toolbar">
+                    <a class="btn"><i class="icon-cog"></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_minimal'
+        });
+    });
+</script>
 </body>
 </html>

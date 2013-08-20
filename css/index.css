@@ -1,3 +1,52 @@
 .header-info>li>a:hover {
     text-decoration: none;
 }
+
+.table {
+    table-layout: fixed;
+}
+
+.table td {
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    outline: none;
+    empty-cells: show;
+}
+
+.table tr {
+    cursor: pointer;
+}
+
+.timespan, .timespan-day, .timespan-week, .timespan-month {
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.timespan-day {
+    color: #b94a48;
+}
+
+.timespan-week {
+    color: #c09853;
+}
+
+.timespan-month {
+    color: #468847;
+}
+
+.content-toolbar {
+    margin-bottom: 10px;
+}
+
+.btn-new {
+    width: 100px;
+}
+
+.btn-action {
+    width: 46px;
+}
+
+.edit-hr {
+    margin: 5px 0px;
+}
