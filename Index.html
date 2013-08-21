@@ -18,7 +18,6 @@
 <body>
 <div class="container">
 <div class="masthead">
-
     <ul class="pull-right unstyled inline header-info">
         <li>
             <a class="text-info" href="#"><i class="icon-user"></i> User</a>
@@ -26,28 +25,42 @@
         <li>
             <a class="text-info" href="#"><i class="icon-off"></i> 退出</a>
         </li>
-        <li>
-            <div class="btn-group content-toolbar">
-
+        <!--<li>
+            <div class="btn-group">
                 <div class="input-append">
                     <input class="span2" id="appendedInputButtons" type="text">
                     <a class="btn" href="#"><i class="icon-search"></i></a>
                 </div>
             </div>
-        </li>
-
+        </li>-->
     </ul>
-
     <h3 class="muted">咨询策划中心工作任务清单</h3>
+</div>
+<div class="row">
+    <div class="span12">
+        <div class="btn-group pull-right">
+            <div class="input-append input-append-search">
+                <input class="input-xlarge" id="appendedInputButtons" type="text">
+                <a class="btn" href="#"><i class="icon-search"></i></a>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#">任务清单</a>
+            </li>
+            <li><a href="#">个人日志</a></li>
+        </ul>
+    </div>
 
 </div>
-<hr>
+
 <div class="row">
 <div class="span2">
     <ul class="nav nav-list">
-
-        <button data-bind="click: showEditView" class="btn btn-danger btn-new">新 增</button>
-        <li><h5 class="muted">任务状态</h5>
+        <li>
+            <button data-bind="click: showEditView" class="btn btn-danger btn-new">新 增</button>
+        </li>
+        <li class="nav-header"><h5>任务状态</h5>
         </li>
         <li><a href="javascript:void(0);"><i class="icon-minus"></i><span class="text-success">全部</span></a></li>
         <li>
@@ -57,7 +70,7 @@
                 <li><a href="#">已取消</a></li>
             </ul>
         </li>
-        <li><h5 class="muted">到期时间</h5>
+        <li class="nav-header"><h5>到期时间</h5>
         </li>
         <li><a href="javascript:void(0);"><i class="icon-minus"></i><span class="text-success">全部</span></a></li>
         <li>
@@ -68,8 +81,7 @@
                 <li><a href="#">一个月以上</a></li>
             </ul>
         </li>
-
-        <li class="nav-header"><h5 class="muted">任务类型</h5></li>
+        <li class="nav-header"><h5>任务类型</h5></li>
         <li>
             <ul class="nav nav-list">
                 <li><a href="#">我负责的</a></li>
@@ -84,23 +96,30 @@
     <div class="span5">
         <ul class="inline">
             <li>
-                <div class="btn-group content-toolbar">
-                    <a href="#" class="btn btn-checkbox"><input type="checkbox"></a>
+                <div class="btn-group">
+                    <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                        <div class="btn-checkbox"><input type="checkbox">
+                        </div>
+                        <span class="caret pull-right"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-ok"></i> 全选</a></li>
+                        <li><a href="#"><i class="icon-off"></i> 全不选</a></li>
+                    </ul>
                 </div>
 
-                <div class="btn-group content-toolbar item-action">
+                <div class="btn-group item-action">
                     <a class="btn btn-action" title="删除"><i class="icon-trash"></i></a>
                 </div>
-                <div class="btn-group content-toolbar item-action">
+                <div class="btn-group item-action">
                     <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
-                            class="icon-tags"></i> <span
-                            class="caret"></span></a>
+                            class="icon-tags"></i><span
+                            class="caret pull-right"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="icon-ok"></i> 标记为完成</a></li>
                         <li><a href="#"><i class="icon-off"></i> 标记为取消</a></li>
                     </ul>
                 </div>
-                <div class="btn-group content-toolbar">
+                <div class="btn-group">
                     <a class="btn btn-action" title="下载"><i class="icon-download-alt"></i></a>
                 </div>
 
@@ -112,7 +131,7 @@
     <div class="span5">
         <ul class="pull-right inline">
             <li>
-                <span class="content-toolbar">
+                <span>
                     第
                     <strong>1-20</strong>
                     项，共
@@ -121,16 +140,16 @@
                 </span>
             </li>
             <li>
-                <div class="btn-group content-toolbar">
+                <div class="btn-group">
                     <a class="btn"><i class="icon-chevron-left"></i></a>
                     <a class="btn"><i class="icon-chevron-right"></i></a>
                 </div>
-                <div class="btn-group content-toolbar">
+                <div class="btn-group">
                     <a class="btn"><i class="icon-refresh"></i></a>
                 </div>
-                <div class="btn-group content-toolbar">
+                <!--<div class="btn-group">
                     <a class="btn"><i class="icon-cog"></i></a>
-                </div>
+                </div>-->
             </li>
         </ul>
     </div>
@@ -332,15 +351,16 @@
         <div class="span5">
             <ul class="inline">
                 <li>
-                    <div class="btn-group content-toolbar">
-                        <a data-bind="click: showListView" class="btn btn-action" title="返回"><i class="icon-arrow-left"></i></a>
+                    <div class="btn-group">
+                        <a data-bind="click: showListView" class="btn btn-action" title="返回"><i
+                                class="icon-arrow-left"></i></a>
                     </div>
 
-                    <div class="btn-group content-toolbar item-action">
+                    <div class="btn-group item-action">
                         <a class="btn btn-action" title="保存"><i class="icon-ok"></i></a>
                         <a class="btn btn-action" title="删除"><i class="icon-trash"></i></a>
                     </div>
-                    <div class="btn-group content-toolbar item-action">
+                    <div class="btn-group item-action">
                         <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
                                 class="icon-tags"></i> <span
                                 class="caret"></span></a>
@@ -358,7 +378,7 @@
         <div class="span5">
             <ul class="pull-right inline">
                 <li>
-                <span class="content-toolbar">
+                <span>
                     第
                     <strong>10</strong>
                     项，共
@@ -367,11 +387,11 @@
                 </span>
                 </li>
                 <li>
-                    <div class="btn-group content-toolbar">
+                    <div class="btn-group">
                         <a class="btn"><i class="icon-chevron-left"></i></a>
                         <a class="btn"><i class="icon-chevron-right"></i></a>
                     </div>
-                    <div class="btn-group content-toolbar">
+                    <div class="btn-group">
                         <a class="btn"><i class="icon-cog"></i></a>
                     </div>
                 </li>
