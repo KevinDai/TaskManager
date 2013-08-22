@@ -51,7 +51,6 @@
     </div>
 
 </div>
-
 <div id="taskList" class="row">
 <div class="span2">
     <ul class="nav nav-list">
@@ -64,7 +63,7 @@
                 class="icon-minus"></i><span class="text-success">全部</span></a></li>
         <li>
             <ul data-bind="foreach: { data: selectListItems, as: 'item' }" class="nav nav-list">
-                <li data-bind="attr: { class: filterLink.value() == item.value ? 'active' : ''}">
+                <li data-bind="attr: { 'class': filterLink.value() == item.value ? 'active' : ''}">
                     <a data-bind="text: item.name, click: filterLink.select" class="" href="#"></a>
                 </li>
             </ul>
@@ -151,11 +150,22 @@
                         <input type="checkbox">
                     </td>
                     <td>
-                        <strong data-bind="text: daySpan, attr: {class: daySpanClass}">
-                        </strong>
-                        <small>天</small>
-                        <br>
-                        <small data-bind="text: deadline" class="muted"></small>
+                        <div style="text-align: center;">
+                            <!-- ko if: daySpan < 0 -->
+                            <strong class="timespan-expired">已到期</strong>
+                            <!-- /ko -->
+                            <!-- ko if: daySpan == 0 -->
+                            <strong class="timespan-day">今</strong>
+                            <small>天</small>
+                            <!-- /ko -->
+                            <!-- ko if: daySpan > 0 -->
+                            <strong data-bind="text: daySpan, attr: {'class': daySpanClass}">
+                            </strong>
+                            <small>天</small>
+                            <!-- /ko -->
+                            <br>
+                            <small data-bind="text: deadline" class="muted"></small>
+                        </div>
                     </td>
                     <td><h5 data-bind="text: taskName">自动部署工具</h5></td>
                 </tr>
@@ -290,13 +300,14 @@
         });
     });
 
+    //生成展示数据
     function loadTasks() {
-        var daySpans = [0, 1, 2, 2, 3, 5, 6, 10, 15, 26, 30, 31, 32, 38, 40, 80, 100, 130, 400, 430];
-        var data = [];
-        var now;
+        var daySpans = [-1, 0, 1, 2, 3, 5, 6, 10, 15, 26, 30, 31, 32, 38, 40, 80, 100, 130, 400, 430],
+                data = [],
+                now;
         for (var i = 0; i < daySpans.length; i++) {
             now = new Date();
-            now.setDate(now.getDate() - daySpans[i])
+            now.setDate(now.getDate() + daySpans[i]);
             data.push(new taskViewModel({
                 Deadline: now,
                 TaskName: "自动部署工具自动部署工具自动部署工具自动部署工具",
@@ -308,8 +319,8 @@
         return data;
     }
 
-    function formatDate(date) {
-        return  date.getYear() + "年" + date.getMonth() + "月" + date.getDay() + "日"
+    function formatDateString(date) {
+        return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
     }
 
     var filterLinkViewModel = function (field, name, selectListItems, defaultValue) {
@@ -358,12 +369,13 @@
     };
 
     var taskViewModel = function (task) {
-        this.deadline = formatDate(task.Deadline);
+        this.deadline = formatDateString(task.Deadline);
         this.taskName = task.TaskName;
         this.personInCharge = task.PersonInCharge;
         this.creator = task.Creator;
-        this.createTime = formatDate(task.CreateTime);
-        this.daySpan = parseInt(Math.abs(task.Deadline - Date()) / 1000 / 60 / 60 / 24);
+        this.createTime = formatDateString(task.CreateTime);
+        this.daySpan = parseInt((task.Deadline - new Date()) / 1000 / 60 / 60 / 24);
+
         if (this.daySpan <= 3) {
             this.daySpanClass = "timespan-day";
         } else if (this.daySpan <= 7) {

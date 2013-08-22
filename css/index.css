@@ -18,9 +18,17 @@
     cursor: pointer;
 }
 
+.timespan-expired, .timespan-today {
+    color: #b94a48;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 5px;
+}
+
 .timespan, .timespan-day, .timespan-week, .timespan-month {
     font-size: 20px;
-    padding-right: 5px;
+    text-align: center;
+    margin-right: 5px;
 }
 
 .timespan-day {
