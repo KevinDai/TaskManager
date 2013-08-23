@@ -2,11 +2,11 @@
     text-decoration: none;
 }
 
-.table {
+.list-table {
     table-layout: fixed;
 }
 
-.table td {
+.list-table td {
     white-space: nowrap;
     overflow: hidden;
     vertical-align: middle;
@@ -14,21 +14,29 @@
     empty-cells: show;
 }
 
-.table tr {
+.list-table tr {
     cursor: pointer;
+    height: 61px;
 }
 
-.timespan-expired, .timespan-today {
-    color: #b94a48;
-    font-size: 20px;
+.timespan-status{
+    font-size: 16px;
+    font-weight: bold;
     text-align: center;
-    margin-right: 5px;
+    margin: 0px 5px;
+    float: none;
+    color: #3a87ad;
 }
 
-.timespan, .timespan-day, .timespan-week, .timespan-month {
+.timespan-expired, .timespan-today, .timespan, .timespan-day, .timespan-week, .timespan-month {
     font-size: 20px;
     text-align: center;
-    margin-right: 5px;
+    margin: 0px 5px;
+    float: none;
+}
+
+.timespan-expired {
+    color: #999999;
 }
 
 .timespan-day {
@@ -58,6 +66,7 @@
 
 .edit-hr {
     margin: 0px 0px 10px 0px;
+    border-top: 1px solid #e5e5e5;
 }
 
 .item-action {
