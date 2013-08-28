@@ -17,6 +17,7 @@
     <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>
 </head>
 <body>
 <div class="container">
@@ -72,7 +73,7 @@
         <!-- /ko -->
     </ul>
 </div>
-<div id="list" class="span10">
+<div id="list" class="span10" style="display: none">
     <div class="row">
         <div class="span5">
             <ul class="inline">
@@ -163,194 +164,339 @@
         </div>
     </div>
 </div>
-<div id="edit" class="span10" style="display: none">
-    <div class="row">
-        <div class="span5">
-            <ul class="inline">
-                <li>
-                    <div class="btn-group">
-                        <a data-bind="click: showListView" class="btn btn-action" title="返回"><i
-                                class="icon-arrow-left"></i></a>
-                    </div>
-                    <div class="btn-group item-action">
-                        <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="保存"><i
-                                class="icon-ok"></i></a>
-                        <a class="btn btn-action" data-toggle="tooltip" title="删除"><i class="icon-trash"></i></a>
-                    </div>
-                    <div class="btn-group item-action">
-                        <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
-                                class="icon-tags"></i> <span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-ok"></i> 标记为完成</a></li>
-                            <li><a href="#"><i class="icon-off"></i> 标记为取消</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-            <!--<div class="navbar">
-            </div>-->
-        </div>
+<div id="edit" class="span10">
+<div class="row">
+    <div class="span5">
+        <ul class="inline">
+            <li>
+                <div class="btn-group">
+                    <a data-bind="click: showListView" class="btn btn-action" title="返回"><i
+                            class="icon-arrow-left"></i></a>
+                </div>
+                <div class="btn-group item-action">
+                    <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="保存"><i
+                            class="icon-ok"></i></a>
+                    <a class="btn btn-action" data-toggle="tooltip" title="删除"><i class="icon-trash"></i></a>
+                </div>
+                <div class="btn-group item-action">
+                    <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
+                            class="icon-tags"></i> <span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="icon-ok"></i> 标记为完成</a></li>
+                        <li><a href="#"><i class="icon-off"></i> 标记为取消</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!--<div class="navbar">
+        </div>-->
     </div>
-    <hr class="edit-hr">
-    <div class="row">
-        <div class="span10">
-            <ul id="myTab" class="nav nav-tabs">
-                <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
-                <li class=""><a href="#attachment" data-toggle="tab">附件</a></li>
-                <li class=""><a href="#comment" data-toggle="tab">评论</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade active in" id="info">
-                    <form class="form-horizontal">
-                        <div class="control-group">
-                            <label class="control-label">项目类型：</label>
+</div>
+<hr class="edit-hr">
+<div class="row">
+<div class="span10">
+<ul id="myTab" class="nav nav-tabs">
+    <li class=""><a href="#info" data-toggle="tab">任务信息</a></li>
+    <li class="active"><a href="#comment" data-toggle="tab">评论</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+<div class="tab-pane fade" id="info">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="control-group">
+                <label class="control-label">项目类型：</label>
 
-                            <div class="controls">
-                                <select>
-                                    <option>纵向研究</option>
-                                    <option>横向研究</option>
-                                    <option>横向咨询</option>
-                                    <option>纵向工作</option>
-                                    <option>中心工作</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="taskName">项目名称：</label>
-
-                            <div class="controls">
-                                <input type="text" class="input-xxlarge" id="taskName">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="description">委托单位：</label>
-
-                            <div class="controls">
-                                <input id="description" type="text" class="input-xxlarge">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">开始时间：</label>
-
-                            <div class="controls">
-                                <div class="input-append date form_datetime">
-                                    <input size="16" type="text" value="">
-                                    <span class="add-on"><i class="icon-remove"></i></span>
-                                    <span class="add-on"><i class="icon-calendar"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">截止时间：</label>
-
-                            <div class="controls">
-                                <div class="input-append date form_datetime">
-                                    <input size="16" type="text" value="">
-                                    <span class="add-on"><i class="icon-remove"></i></span>
-                                    <span class="add-on"><i class="icon-calendar"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">需完成的材料：</label>
-
-                            <div class="controls">
-                                <textarea class="input-xxlarge" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">具体进展：</label>
-
-                            <div class="controls">
-                                <textarea class="input-xxlarge" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">推进计划：</label>
-
-                            <div class="controls">
-                                <textarea class="input-xxlarge" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="price">项目金额(元)：</label>
-
-                            <div class="controls">
-                                <input id="price" type="text">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="taskName">付款方式：</label>
-
-                            <div class="controls">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">到款情况：</label>
-
-                            <div class="controls">
-                                <select>
-                                    <option>未到款</option>
-                                    <option>已收前期款</option>
-                                    <option>已全部到款</option>
-                                </select>
-
-                                <div class="input-prepend">
-                                    <span class="add-on">已收</span>
-                                    <input class="input-small" type="text">
-                                </div>
-                                <div class="input-prepend">
-                                    <span class="add-on">还有</span>
-                                    <input class="input-small" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label">到款情况：</label>
-
-                            <div class="controls">
-                                <select>
-                                    <option>未开票</option>
-                                    <option>已开票</option>
-                                    <option>已出具到账证明</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="attachment">
-                    <table class="table">
-                        <colgroup>
-                            <col style="width: 400px;">
-                            <col style="width: 100px;">
-                            <col style="width: 140px;">
-                        </colgroup>
-                        <tbody>
-                        <tr>
-                            <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
-                            <td>上传用户</td>
-                            <td>2013-8-22 10:20</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
-                            <td>上传用户</td>
-                            <td>2013-8-22 10:20</td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
-                            <td>上传用户</td>
-                            <td>2013-8-22 10:20</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="comment">
+                <div class="controls">
+                    <select>
+                        <option>纵向研究</option>
+                        <option>横向研究</option>
+                        <option>横向咨询</option>
+                        <option>纵向工作</option>
+                        <option>中心工作</option>
+                    </select>
                 </div>
             </div>
+            <div class="control-group">
+                <label class="control-label" for="taskName">项目名称：</label>
+
+                <div class="controls">
+                    <input type="text" class="input-xxlarge" id="taskName">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="description">委托单位：</label>
+
+                <div class="controls">
+                    <input id="description" type="text" class="input-xxlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">开始时间：</label>
+
+                <div class="controls">
+                    <div class="input-append date form_datetime">
+                        <input size="16" type="text" value="">
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">截止时间：</label>
+
+                <div class="controls">
+                    <div class="input-append date form_datetime">
+                        <input size="16" type="text" value="">
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">需完成的材料：</label>
+
+                <div class="controls">
+                    <textarea class="input-xxlarge" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">具体进展：</label>
+
+                <div class="controls">
+                    <textarea class="input-xxlarge" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">推进计划：</label>
+
+                <div class="controls">
+                    <textarea class="input-xxlarge" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="price">项目金额(元)：</label>
+
+                <div class="controls">
+                    <input id="price" type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="taskName">付款方式：</label>
+
+                <div class="controls">
+                    <input type="text">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">到款情况：</label>
+
+                <div class="controls">
+                    <select>
+                        <option>未到款</option>
+                        <option>已收前期款</option>
+                        <option>已全部到款</option>
+                    </select>
+
+                    <div class="input-prepend">
+                        <span class="add-on">已收</span>
+                        <input class="input-small" type="text">
+                    </div>
+                    <div class="input-prepend">
+                        <span class="add-on">还有</span>
+                        <input class="input-small" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">到款情况：</label>
+
+                <div class="controls">
+                    <select>
+                        <option>未开票</option>
+                        <option>已开票</option>
+                        <option>已出具到账证明</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="span10">
+            <div class="row">
+                <div class="span10">
+
+                </div>
+
+            </div>
+            <ul class="unstyled inline">
+                <li><a class="btn btn-small" href="#"><i class="icon-plus"></i> 上传附件</a></li>
+                <li><a class="btn btn-small" href="#"><i class="icon-download-alt"></i> 下载全部</a></li>
+            </ul>
+            <table class="table">
+                <colgroup>
+                    <col style="width: 400px;">
+                    <col style="width: 100px;">
+                    <col style="width: 140px;">
+                    <col style="width: 30px;">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
+                    <td>上传用户</td>
+                    <td>2013-8-22 10:20</td>
+                    <td><a href="#"><i class="icon-remove"></i></a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
+                    <td>上传用户</td>
+                    <td>2013-8-22 10:20</td>
+                    <td><a href="#"><i class="icon-remove"></i></a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">咨询策划中心任务管理系统--需求分析.docx</a></td>
+                    <td>上传用户</td>
+                    <td>2013-8-22 10:20</td>
+                    <td><a href="#"><i class="icon-remove"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="tab-pane fade active in" id="comment">
+    <div class="row">
+        <div class="span10">
+            <ul class="unstyled comment">
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-user">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-date">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-date">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-date">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+                <li>
+                    <span class="comment-user">用户</span>
+                    <span class="comment-date">2013-8-20 9:00</span>
+                    <ul class="unstyled inline pull-right">
+                        <li><a class="comment-action-link" href="#">修改</a></li>
+                        <li><a class="comment-action-link" href="#">删除</a></li>
+                    </ul>
+                    <hr class="title-content-hr">
+                    <p class="comment-content">
+                        感谢分享~</p>
+                </li>
+            </ul>
         </div>
     </div>
+    <div class="row">
+        <div class="span8">
+            <h5>发表评论：</h5>
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <textarea class="input-xxlarge" rows="5"></textarea>
+                </div>
+                <a class="btn btn-new btn-primary" href="#">提交评论</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="tab-pane fade" id="nodeList"></div>
@@ -361,6 +507,8 @@
 <script>
 
     $(document).ready(function () {
+        $('#editor').wysiwyg();
+
         $('input').iCheck({
             checkboxClass: 'icheckbox_minimal'
         });
@@ -445,63 +593,61 @@
     };
 
     var taskViewModel = function (task) {
-                var self = this,
-                        init = function (task) {
-                            self.deadline = formatDateString(task.Deadline);
-                            self.taskName = task.TaskName;
-                            self.personInCharge = task.PersonInCharge;
-                            self.creator = task.Creator;
-                            self.createTime = formatDateString(task.CreateTime);
-                            self.status = task.Status;
-                            self.daySpanHtml = taskDaySpanHtml(task);
-                        },
+        var self = this,
+                init = function (task) {
+                    self.deadline = formatDateString(task.Deadline);
+                    self.taskName = task.TaskName;
+                    self.personInCharge = task.PersonInCharge;
+                    self.creator = task.Creator;
+                    self.createTime = formatDateString(task.CreateTime);
+                    self.status = task.Status;
+                    self.daySpanHtml = taskDaySpanHtml(task);
+                },
 
-                        taskDaySpanHtml = function (task) {
-                            if (task.Status == 1) {
-                                var daySpan = parseInt((task.Deadline - new Date()) / 1000 / 60 / 60 / 24),
-                                        daySpanStr = daySpan,
-                                        daySpanClass,
-                                        prefix = "";
-                                if (daySpan < 0) {
-                                    daySpanStr = -daySpan;
-                                    daySpanClass = "timespan-expired";
-                                    prefix = "<small>过期</small>";
-                                }
-                                else if (daySpan == 0) {
-                                    daySpanStr = "今"
-                                    daySpanClass = "timespan-day";
-                                } else if (daySpan <= 3) {
-                                    daySpanClass = "timespan-day";
-                                } else if (daySpan <= 7) {
-                                    daySpanClass = "timespan-week";
-                                } else if (daySpan <= 30) {
-                                    daySpanClass = "timespan-month";
-                                } else {
-                                    daySpanClass = "timespan";
-                                }
-                                return prefix + '<span class="' + daySpanClass + '">' + daySpanStr + '</span><small>天</small>';
-                            }
-                            else {
-                                var statusName = "";
-                                switch (task.Status) {
-                                    case 0:
-                                        statusName = "发布待审";
-                                        break;
-                                    case 2:
-                                        statusName = "完成待审";
-                                        break;
-                                    case 3:
-                                        statusName = "已完成";
-                                        break;
-                                }
-                                return '<small class="text-info">' + statusName + '</small> ';
-                            }
-                        };
-                init(task);
-                return self;
-            }
-            ;
-
+                taskDaySpanHtml = function (task) {
+                    if (task.Status == 1) {
+                        var daySpan = parseInt((task.Deadline - new Date()) / 1000 / 60 / 60 / 24),
+                                daySpanStr = daySpan,
+                                daySpanClass,
+                                prefix = "";
+                        if (daySpan < 0) {
+                            daySpanStr = -daySpan;
+                            daySpanClass = "timespan-expired";
+                            prefix = "<small>过期</small>";
+                        }
+                        else if (daySpan == 0) {
+                            daySpanStr = "今"
+                            daySpanClass = "timespan-day";
+                        } else if (daySpan <= 3) {
+                            daySpanClass = "timespan-day";
+                        } else if (daySpan <= 7) {
+                            daySpanClass = "timespan-week";
+                        } else if (daySpan <= 30) {
+                            daySpanClass = "timespan-month";
+                        } else {
+                            daySpanClass = "timespan";
+                        }
+                        return prefix + '<span class="' + daySpanClass + '">' + daySpanStr + '</span><small>天</small>';
+                    }
+                    else {
+                        var statusName = "";
+                        switch (task.Status) {
+                            case 0:
+                                statusName = "发布待审";
+                                break;
+                            case 2:
+                                statusName = "完成待审";
+                                break;
+                            case 3:
+                                statusName = "已完成";
+                                break;
+                        }
+                        return '<small class="text-info">' + statusName + '</small> ';
+                    }
+                };
+        init(task);
+        return self;
+    };
 
     var indexViewModel = function () {
         var self = this;
@@ -515,6 +661,7 @@
             $("#edit").hide();
         };
     };
+
     ko.applyBindings(new indexViewModel());
 
 </script>
