@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>咨询策划中心工作任务清单</title>
+    <title>广东省科学技术情报研究所咨询策划中心任务管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
@@ -17,7 +17,7 @@
     <script type="text/javascript" src="js/knockout-2.3.0.js"></script>
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-    <script type="text/javascript" src="js/bootstrap-wysiwyg.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div class="container">
@@ -38,7 +38,8 @@
             </div>
         </li>-->
     </ul>
-    <h3 class="muted">Project Name</h3>
+    <h3 class="muted">广东省科学技术情报研究所咨询策划中心任务管理系统</h3>
+    <!--<h3 class="muted">Project Name</h3>-->
 </div>
 <div class="row">
 <div class="span12">
@@ -50,17 +51,17 @@
 </div>
 <ul id="mainTab" class="nav nav-tabs">
     <li class="active"><a href="#taskList" data-toggle="tab">任务清单</a></li>
-    <li><a href="#nodeList" data-toggle="tab">工作日志</a></li>
+    <li><a href="#noteList" data-toggle="tab">工作日志</a></li>
 </ul>
 <div id="mainTabContent" class="row tab-content">
 <div class="tab-pane fade active in" id="taskList">
 <div class="span2">
     <ul class="nav nav-list">
         <li>
-            <button data-bind="click: showEditView" class="btn btn-danger btn-new">发布任务</button>
+            <button data-bind="click: showTaskEditView" class="btn btn-danger btn-new">发布任务</button>
         </li>
         <!-- ko foreach: { data: taskList.filterLinks, as: 'filterLink' } -->
-        <li class="nav-header"><h5 data-bind="text: name"></h5>
+        <li class="nav-header"><h5 data-bind="text: name"></h5></li>
         <li data-bind="if: value"><a data-bind="click: clear" href="javascript:void(0);"><i
                 class="icon-minus"></i><span class="text-success">全部</span></a></li>
         <li>
@@ -73,7 +74,7 @@
         <!-- /ko -->
     </ul>
 </div>
-<div id="list" class="span10" style="display: none">
+<div id="list" class="span10">
     <div class="row">
         <div class="span5">
             <ul class="inline">
@@ -90,7 +91,8 @@
                     </div>
 
                     <div class="btn-group item-action">
-                        <a class="btn btn-action" title="删除"><i class="icon-trash"></i></a>
+                        <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="删除"><i
+                                class="icon-trash"></i></a>
                     </div>
                     <div class="btn-group item-action">
                         <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
@@ -102,7 +104,8 @@
                         </ul>
                     </div>
                     <div class="btn-group">
-                        <a class="btn btn-action" title="下载"><i class="icon-download-alt"></i></a>
+                        <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="下载"><i
+                                class="icon-download-alt"></i></a>
                     </div>
                 </li>
             </ul>
@@ -145,7 +148,7 @@
                     <col style="width: 200px;">
                 </colgroup>
                 <tbody data-bind="foreach: taskList.list">
-                <tr data-bind="click: $root.showEditView">
+                <tr data-bind="click: $root.showTaskEditView">
                     <td>
                         <input type="checkbox">
                     </td>
@@ -164,19 +167,21 @@
         </div>
     </div>
 </div>
-<div id="edit" class="span10">
+<div id="edit" class="span10" style="display: none">
 <div class="row">
     <div class="span5">
         <ul class="inline">
             <li>
                 <div class="btn-group">
-                    <a data-bind="click: showListView" class="btn btn-action" title="返回"><i
+                    <a data-bind="click: showTaskListView" data-toggle="tooltip" data-placement="bottom"
+                       class="btn btn-action" title="返回"><i
                             class="icon-arrow-left"></i></a>
                 </div>
                 <div class="btn-group item-action">
                     <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="保存"><i
                             class="icon-ok"></i></a>
-                    <a class="btn btn-action" data-toggle="tooltip" title="删除"><i class="icon-trash"></i></a>
+                    <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="删除"><i
+                            class="icon-trash"></i></a>
                 </div>
                 <div class="btn-group item-action">
                     <a class="btn dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><i
@@ -193,15 +198,15 @@
         </div>-->
     </div>
 </div>
-<hr class="edit-hr">
+<hr class="toolbar-hr">
 <div class="row">
 <div class="span10">
 <ul id="myTab" class="nav nav-tabs">
-    <li class=""><a href="#info" data-toggle="tab">任务信息</a></li>
-    <li class="active"><a href="#comment" data-toggle="tab">评论</a></li>
+    <li class="active"><a href="#info" data-toggle="tab">任务信息</a></li>
+    <li class=""><a href="#comment" data-toggle="tab">评论</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-<div class="tab-pane fade" id="info">
+<div class="tab-pane fade active in" id="info">
     <form class="form-horizontal">
         <fieldset>
             <div class="control-group">
@@ -365,112 +370,13 @@
 
     </div>
 </div>
-<div class="tab-pane fade active in" id="comment">
+<div class="tab-pane fade" id="comment">
     <div class="row">
         <div class="span10">
-            <ul class="unstyled comment">
+            <ul data-bind="foreach: tempDatas" class="unstyled comment">
                 <li>
                     <span class="comment-user">用户</span>
                     <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-user">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-date">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-date">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-date">2013-8-20 9:00</span>
-                    <ul class="unstyled inline pull-right">
-                        <li><a class="comment-action-link" href="#">修改</a></li>
-                        <li><a class="comment-action-link" href="#">删除</a></li>
-                    </ul>
-                    <hr class="title-content-hr">
-                    <p class="comment-content">
-                        感谢分享~</p>
-                </li>
-                <li>
-                    <span class="comment-user">用户</span>
-                    <span class="comment-date">2013-8-20 9:00</span>
                     <ul class="unstyled inline pull-right">
                         <li><a class="comment-action-link" href="#">修改</a></li>
                         <li><a class="comment-action-link" href="#">删除</a></li>
@@ -483,8 +389,30 @@
         </div>
     </div>
     <div class="row">
+        <div class="span10">
+            <div class="pagination">
+                <ul>
+                    <li class="disabled"><a href="#">&lt</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">&gt</a></li>
+                </ul>
+                <div class="pull-right">
+                    <span>共</span>
+                    <strong>120</strong>
+                    <span>条评论</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="span8">
             <h5>发表评论：</h5>
+
             <form class="form-horizontal">
                 <div class="control-group">
                     <textarea class="input-xxlarge" rows="5"></textarea>
@@ -499,7 +427,159 @@
 </div>
 </div>
 </div>
-<div class="tab-pane fade" id="nodeList"></div>
+<div class="tab-pane fade" id="noteList">
+    <div class="span2">
+        <ul class="nav nav-list">
+            <li>
+                <button data-bind="click: showNoteEditView" class="btn btn-danger btn-new">创建日志</button>
+            </li>
+            <li class="nav-header"><h5>记录日期</h5></li>
+            <li>
+                <ul class="nav nav-list">
+                    <li><a href="#">2013年5月(2)</a></li>
+                    <li><a href="#">2013年3月(12)</a></li>
+                    <li><a href="#">2013年2月(2)</a></li>
+                    <li><a href="#">2013年1月(1)</a></li>
+                    <li><a href="#">2012年12月(12)</a></li>
+                    <li><a href="#">2012年11月(4)</a></li>
+                    <li><a href="#">2013年8月(5)</a></li>
+                    <li><a href="#">2013年7月(8)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="noteListView" class="span10">
+        <div class="row">
+            <ul class="pull-right inline">
+                <li>
+                                   <span>
+                                       第
+                                       <strong>1-20</strong>
+                                       条，共
+                                       <strong>60</strong>
+                                       条
+                                   </span>
+                </li>
+                <li>
+                    <div class="btn-group">
+                        <a class="btn"><i class="icon-chevron-left"></i></a>
+                        <a class="btn"><i class="icon-chevron-right"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn"><i class="icon-refresh"></i></a>
+                    </div>
+                    <!--<div class="btn-group">
+                        <a class="btn"><i class="icon-cog"></i></a>
+                    </div>-->
+                </li>
+            </ul>
+        </div>
+        <hr class="toolbar-hr">
+        <div class="row">
+            <div class="span10">
+                <!-- ko foreach: tempDatas -->
+                <div class="row">
+                    <div class="span10">
+                        <div class="note-item">
+                            <div class="note-title"><a data-bind="click: $root.showNoteDetailView"
+                                                       href="#">基于DTC的分布式事务管理模型之事务控制角色</a></div>
+                            <div class="note-content">
+                                我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型，首先来看看在这个模型中各个事务参与者各自扮演怎样的角色...
+                            </div>
+                            <hr class="note-hr">
+                            <ul class="unstyled inline pull-right">
+                                <li>
+                                    <div class="note-date">2013-8-30 10:10 创建</div>
+                                </li>
+                                <li><a class="comment-action-link" href="#">删除</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    <div id="noteDetailView" class="span10" style="display: none;">
+        <div class="row">
+            <div class="span5">
+                <ul class="inline">
+                    <li>
+                        <div class="btn-group">
+                            <a data-bind="click: showNoteListView" data-toggle="tooltip" data-placement="bottom"
+                               class="btn btn-action" title="返回"><i
+                                    class="icon-arrow-left"></i></a>
+                        </div>
+                        <div class="btn-group item-action">
+                            <a data-bind="click: showNoteEditView" class="btn btn-action" data-toggle="tooltip"
+                               data-placement="bottom" title="编辑"><i
+                                    class="icon-edit"></i></a>
+                            <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="删除"><i
+                                    class="icon-trash"></i></a>
+                        </div>
+                    </li>
+                </ul>
+                <!--<div class="navbar">
+                </div>-->
+            </div>
+        </div>
+        <hr class="toolbar-hr">
+        <div class="row">
+            <div class="span10">
+                <div class="note-detail-date pull-right">2013-8-30 10:10 创建</div>
+                <h4>基于DTC的分布式事务管理模型之事务控制角色</h4>
+                <hr class="note-detail-hr">
+                <p style="letter-spacing: 1px;">
+                    我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型。</br>
+                    我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型。</br>
+                    我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型。</br>
+                    我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型。</br>
+                    我们知道了SOA真正需要的是一个能够协调服务操作直接（通过服务自身访问的资源）或者间接（通过被调用服务访问的资源）访问的所有资源的分布式事务管理系统，这是一个复杂的架构体系。WCF，作为Windows平台下基于SOA的分布式框架，对分布式事务提供全面的支持。不过，WCF并不是另起炉灶，而是充分地利用了Windows现有的事务控制基础架构。本节着重讨论Windows事务处理模型。</br>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="noteEditView" class="span10" style="display: none;">
+        <div class="row">
+            <div class="span5">
+                <ul class="inline">
+                    <li>
+                        <div class="btn-group">
+                            <a data-bind="click: showNoteListView" data-toggle="tooltip" data-placement="bottom"
+                               class="btn btn-action" title="返回"><i
+                                    class="icon-arrow-left"></i></a>
+                        </div>
+                        <div class="btn-group item-action">
+                            <a data-bind="click: showNoteEditView" class="btn btn-action" data-toggle="tooltip"
+                               data-placement="bottom" title="保存"><i
+                                    class="icon-ok"></i></a>
+                            <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="删除"><i
+                                    class="icon-trash"></i></a>
+                        </div>
+                    </li>
+                </ul>
+                <!--<div class="navbar">
+                </div>-->
+            </div>
+        </div>
+        <hr class="toolbar-hr">
+        <form class="form-horizontal" style="margin-top: 20px">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" style="width: 60px; text-align: left">标题：</label>
+
+                    <div class="controls"style="margin-left: 70px;">
+                        <input type="text" class="input-xxlarge">
+                    </div>
+                </div>
+                <div style="height: 600px;">
+                    <textarea class="ckeditor"  id="editor1" name="editor1" style="600px">
+                    </textarea>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
 </div>
 </div>
 </div>
@@ -507,8 +587,6 @@
 <script>
 
     $(document).ready(function () {
-        $('#editor').wysiwyg();
-
         $('input').iCheck({
             checkboxClass: 'icheckbox_minimal'
         });
@@ -520,6 +598,7 @@
             language: "zh-CN",
             todayBtn: true
         });
+        $('.btn-action').tooltip();
     });
 
     //生成展示数据
@@ -652,13 +731,30 @@
     var indexViewModel = function () {
         var self = this;
         self.taskList = new taskListViewModel();
-        self.showEditView = function () {
+        self.tempDatas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        self.showTaskEditView = function () {
             $("#list").hide();
             $("#edit").show();
         };
-        self.showListView = function () {
+        self.showTaskListView = function () {
             $("#list").show();
             $("#edit").hide();
+        };
+        self.showNoteDetailView = function () {
+            $("#noteListView").hide();
+            $("#noteEditView").hide();
+            $("#noteDetailView").show();
+        };
+
+        self.showNoteEditView = function () {
+            $("#noteDetailView").hide();
+            $("#noteListView").hide();
+            $("#noteEditView").show();
+        };
+        self.showNoteListView = function () {
+            $("#noteEditView").hide();
+            $("#noteDetailView").hide();
+            $("#noteListView").show();
         };
     };
 
