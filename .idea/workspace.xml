@@ -4,7 +4,7 @@
     <list default="true" id="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" name="Default" comment="" />
     <ignored path="TaskManager.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Index.html" changelist="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" time="1378436680122" ignored="false" />
+    <file path="/Index.html" changelist="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" time="1378437436342" ignored="false" />
     <file path="/index.css" changelist="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" time="1378436780893" ignored="false" />
     <file path="/minimal.css" changelist="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" time="1376898444747" ignored="false" />
     <file path="/DummyFile.xpath" changelist="9daa0534-7c8d-4b1c-aa8f-e5eebb51567e" time="1377178219242" ignored="false" />
@@ -31,9 +31,8 @@
       <file leaf-file-name="Index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="18" selection-start="3148" selection-end="3148" vertical-scroll-proportion="-24.428572">
+            <state line="112" column="57" selection-start="5624" selection-end="5624" vertical-scroll-proportion="-21.071428">
               <folding>
-                <element signature="tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -47,7 +46,7 @@
       <file leaf-file-name="index.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/css/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="36" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.652071">
+            <state line="50" column="1" selection-start="867" selection-end="867" vertical-scroll-proportion="0.24733728">
               <folding />
             </state>
           </provider>
@@ -387,9 +386,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="18" selection-start="3148" selection-end="3148" vertical-scroll-proportion="-24.428572">
+        <state line="112" column="57" selection-start="5624" selection-end="5624" vertical-scroll-proportion="-21.071428">
           <folding>
-            <element signature="tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#col#3;n#colgroup#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -401,7 +399,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="36" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.652071">
+        <state line="50" column="1" selection-start="867" selection-end="867" vertical-scroll-proportion="0.24733728">
           <folding />
         </state>
       </provider>

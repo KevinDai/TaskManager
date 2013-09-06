@@ -64,18 +64,18 @@
 }
 
 .system-sidenav.nav .nav>li.active {
-    border-right: 1px solid #d2322d;
+    border-right: 1px solid #b94a48;
 }
 
 .system-sidenav.nav .nav>li.active a {
-    color: #d2322d;
+    color: #b94a48;
     font-weight: bold;
 }
 
 .system-sidenav.nav .nav-header {
     font-weight: bold;
     padding-bottom: 5px;
-    color: #999999;
+    color: #428bca;
 }
 
 .system-sidenav hr {
