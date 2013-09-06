@@ -81,7 +81,7 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <ul class="list-inline">
                             <li>
                                 <div class="btn-group">
@@ -118,7 +118,7 @@
                         <!--<div class="navbar">
                         </div>-->
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <ul class="pull-right list-inline">
                             <li>
                                                 <span>
@@ -157,8 +157,8 @@
         <ul class="nav system-sidenav">
             <!-- ko foreach: { data: taskList.filterLinks, as: 'filterLink' } -->
             <li class="nav-header"><span data-bind="text: name"></span></li>
-            <li data-bind="if: value"><a data-bind="click: clear" href="javascript:void(0);"><span class="text-success"><span
-                    class="glyphicon glyphicon-minus"></span> 全部</span></a></li>
+            <li data-bind="if: value"><a data-bind="click: clear" href="javascript:void(0);"><span class="text-all"><span
+                    class="glyphicon glyphicon-stop glyphicon-all"></span>全部</span></a></li>
             <li>
                 <ul data-bind="foreach: { data: selectListItems, as: 'item' }" class="nav nav-list">
                     <li data-bind="attr: { 'class': filterLink.value() == item.value ? 'active' : ''}">
@@ -201,7 +201,7 @@
                         <br>
                         <small data-bind="text: deadline" class="muted"></small>
                     </td>
-                    <td><h5 data-bind="text: taskName"></h5></td>
+                    <td><h5 data-bind="text: taskName" style="font-weight: bold"></h5></td>
                     <td>
                         <div style="text-align: center;"><span data-bind="text: personInCharge"></span></div>
                     </td>

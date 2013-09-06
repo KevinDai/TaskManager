@@ -1,3 +1,7 @@
+body {
+    /*font-family: "宋体";*/
+}
+
 .nav-system-info {
     min-height: 0px;
     height: 25px;
@@ -13,6 +17,10 @@
 
 .nav-system-header {
     border-radius: 0px;
+}
+
+.nav-system-header a{
+    font-weight: bold;
 }
 
 .main-nav a:hover {
@@ -47,24 +55,33 @@
     padding-bottom: 10px;
     text-shadow: 0 1px 0 #fff;
     border-radius: 5px;
-    background-color: #f7f5fa;
+    background-color: #f8f8f8;
 }
 
 .system-sidenav.nav {
-    padding: 10px 0px 10px 10px;
+    /*padding: 10px 0px 10px 10px;*/
 }
 
-.system-sidenav.nav a {
-    padding: 5px 0px;
+.system-sidenav.nav a,
+.system-sidenav.nav .nav-header {
+    padding: 5px 10px;
+}
+
+.system-sidenav .glyphicon-all {
+    margin-right: 6px;
+}
+
+.system-sidenav .text-all {
+    color: #563d7c;
 }
 
 .system-sidenav.nav .nav a {
-    padding: 5px 15px;
+    padding: 5px 30px;
     color: #333;
 }
 
 .system-sidenav.nav .nav>li.active {
-    border-right: 1px solid #b94a48;
+    border-right: 2px solid #b94a48;
 }
 
 .system-sidenav.nav .nav>li.active a {
@@ -74,13 +91,13 @@
 
 .system-sidenav.nav .nav-header {
     font-weight: bold;
-    padding-bottom: 5px;
     color: #428bca;
+    font-size: 16px;
 }
 
 .system-sidenav hr {
-    margin: 10px 0px;
-    /*border-color: #DDDDDD;*/
+    margin: 10px 10px;
+    border-top: 1px solid #DDDDDD;
 }
 
 .system-toolbar {
