@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+    <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">-->
     <link href="css/minimal.css" rel="stylesheet" media="screen">
     <!-- <link href="css/todc-bootstrap.css" rel="stylesheet" media="screen"> -->
     <link href="css/index.css" rel="stylesheet" media="screen">
@@ -59,8 +59,8 @@
                 </li>-->
             </ul>
             <div class="navbar-header">
-                <!--<p class="navbar-brand">广东省科学技术情报研究所咨询策划中心任务管理系统</p>-->
-                <a class="navbar-brand">Project Name</a>
+                <span class="navbar-brand">广东省科学技术情报研究所咨询策划中心任务管理系统</span>
+                <!--<span class="navbar-brand">Project Name</span>-->
             </div>
         </div>
 
@@ -73,8 +73,79 @@
 <div class="tab-pane fade active in" id="taskList">
 <div class="system-toolbar affix">
     <div class="container">
-        <div class="btn-group">
-            <button data-bind="click: showTaskEditView" class="btn btn-danger btn-new">发布任务</button>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="btn-group">
+                    <button data-bind="click: showTaskEditView" class="btn btn-danger btn-new">发布任务</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-7">
+                        <ul class="list-inline">
+                            <li>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-action dropdown-toggle"
+                                       data-toggle="dropdown">
+                                        <div class="btn-checkbox"><input type="checkbox">
+                                        </div>
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">全选</a></li>
+                                        <li><a href="#">全不选</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group item-action">
+                                    <a class="btn btn-primary btn-action" data-toggle="tooltip" data-placement="bottom"
+                                       title="删除"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
+                                </div>
+                                <div class="btn-group item-action">
+                                    <a class="btn btn-primary dropdown-toggle btn-action" data-toggle="dropdown"><span
+                                            class="glyphicon glyphicon-tags"></span><span
+                                            class="caret caret-right"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">标记为完成</a></li>
+                                        <li><a href="#">标记为取消</a></li>
+                                    </ul>
+                                </div>
+                                <a class="btn btn-primary btn-action" data-toggle="tooltip" data-placement="bottom"
+                                   title="下载">
+                                    <span class="glyphicon glyphicon-download-alt"></span></a>
+                            </li>
+                        </ul>
+                        <!--<div class="navbar">
+                        </div>-->
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="pull-right list-inline">
+                            <li>
+                                                <span>
+                                                    第
+                                                    <strong>1-20</strong>
+                                                    项，共
+                                                    <strong>55</strong>
+                                                    项
+                                                </span>
+                            </li>
+                            <li>
+                                <div class="btn-group">
+                                    <a class="btn btn-default"><span
+                                            class="glyphicon glyphicon-chevron-left"></span></a>
+                                    <a class="btn btn-default"><span
+                                            class="glyphicon glyphicon-chevron-right"></span></a>
+                                </div>
+                                <a class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></a>
+                                <a class="btn btn-default"><span class="glyphicon glyphicon-search"></span></a>
+                                <!--<div class="btn-group">
+                                    <a class="btn"><i class="icon-cog"></i></a>
+                                </div>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <hr class="toolbar-hr">
     </div>
@@ -83,11 +154,11 @@
 <div class="row">
 <div class="col-md-3">
     <div class="system-sidebar">
-        <ul class="nav nav-list system-sidenav">
+        <ul class="nav system-sidenav">
             <!-- ko foreach: { data: taskList.filterLinks, as: 'filterLink' } -->
-            <li class="nav-header"><h5 data-bind="text: name"></h5></li>
-            <li data-bind="if: value"><a data-bind="click: clear" href="javascript:void(0);"><i
-                    class="icon-minus"></i><span class="text-success">全部</span></a></li>
+            <li class="nav-header"><span data-bind="text: name"></span></li>
+            <li data-bind="if: value"><a data-bind="click: clear" href="javascript:void(0);"><span class="text-success"><span
+                    class="glyphicon glyphicon-minus"></span> 全部</span></a></li>
             <li>
                 <ul data-bind="foreach: { data: selectListItems, as: 'item' }" class="nav nav-list">
                     <li data-bind="attr: { 'class': filterLink.value() == item.value ? 'active' : ''}">
@@ -95,74 +166,14 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <hr>
+            </li>
             <!-- /ko -->
         </ul>
     </div>
 </div>
 <div id="list" class="col-md-9">
-    <div class="row">
-        <div class="col-md-8">
-            <ul class="list-inline">
-                <li>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-action btn-default dropdown-toggle" data-toggle="dropdown">
-                            <div class="btn-checkbox"><input type="checkbox">
-                            </div>
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">全选</a></li>
-                            <li><a href="#">全不选</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="btn-group item-action">
-                        <a class="btn btn-default btn-action" data-toggle="tooltip" data-placement="bottom" title="删除"><span
-                                class="glyphicon glyphicon-trash"></span></a>
-                    </div>
-                    <div class="btn-group item-action">
-                        <a class="btn btn-default dropdown-toggle btn-action" data-toggle="dropdown" title="标记"><span
-                                class="glyphicon glyphicon-tags"></span><span
-                                class="caret caret-right"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="icon-ok"></i> 标记为完成</a></li>
-                            <li><a href="#"><i class="icon-off"></i> 标记为取消</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-action" data-toggle="tooltip" data-placement="bottom" title="下载"><i
-                                class="icon-download-alt"></i></a>
-                    </div>
-                </li>
-            </ul>
-            <!--<div class="navbar">
-            </div>-->
-        </div>
-        <div class="col-md-4">
-            <ul class="pull-right list-inline">
-                <li>
-                                    <span>
-                                        第
-                                        <strong>1-20</strong>
-                                        项，共
-                                        <strong>55</strong>
-                                        项
-                                    </span>
-                </li>
-                <li>
-                    <div class="btn-group">
-                        <a class="btn"><i class="icon-chevron-left"></i></a>
-                        <a class="btn"><i class="icon-chevron-right"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn"><i class="icon-refresh"></i></a>
-                    </div>
-                    <!--<div class="btn-group">
-                        <a class="btn"><i class="icon-cog"></i></a>
-                    </div>-->
-                </li>
-            </ul>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <table class="table table-hover list-table">
@@ -172,6 +183,14 @@
                     <col style="width: 350px;">
                     <col style="width: 200px;">
                 </colgroup>
+                <!--<thead>
+                <tr>
+                    <th></th>
+                    <th>截止时间</th>
+                    <th>项目名称</th>
+                    <th style="text-align: center;">负责人</th>
+                </tr>
+                </thead>-->
                 <tbody data-bind="foreach: taskList.list">
                 <tr data-bind="click: $root.showTaskEditView">
                     <td>
